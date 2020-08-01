@@ -1,0 +1,29 @@
+<ion-header [translucent]="true" color="danger">
+    <ion-toolbar color="danger">
+        <ion-title class="ion-text-center">
+            Reproductor de musica
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="dark">
+
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6" *ngFor="let name of SelcGenero" color="dark">
+                <ion-card color="danger">
+                    <ion-card-title class="ion-text-center">
+                        <ion-label>
+                            {{name.NombreGenero}}
+                        </ion-label>
+                    </ion-card-title>
+                    <ion-card-content>
+                        <ion-img botton [src]="name.ImagenGenero" (click)="EnvioNav(name.NombreGenero)"> </ion-img>
+                    </ion-card-content>
+                </ion-card>
+
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

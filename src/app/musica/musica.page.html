@@ -1,0 +1,136 @@
+<ion-header [translucent]="true" color="dark">
+    <ion-toolbar color="danger">
+
+
+
+        <ion-title>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-button (click)="Generos()" fill="clear" color="success">
+                            <ion-icon slot="icon-only" name="home"></ion-icon>
+                            <ion-label> Generos</ion-label>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button (click)="Artistas()" fill="clear" color="success">
+                            <ion-icon name="headset">
+                            </ion-icon>
+                            <ion-label> </ion-label>
+                            <ion-label> Artistas</ion-label>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-item color="danger" class="ion-text-center">
+                            <ion-label>
+                                {{Banda}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-col>
+
+
+
+
+                </ion-row>
+
+
+
+
+            </ion-grid>
+
+        </ion-title>
+
+
+
+
+
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content color="dark">
+
+
+
+
+
+    <ion-card *ngFor="let item of InfoBanda" color="danger">
+        <ion-title>
+
+        </ion-title>
+        <ion-card-header>
+            <ion-img [src]="item.ImagenInfo"></ion-img>
+        </ion-card-header>
+        <ion-card-content> {{item.InfoBanda}} </ion-card-content>
+    </ion-card>
+
+
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6" *ngFor="let track of playlist" (click)="start(track)">
+                <ion-card color="danger">
+                    <ion-card-title class="ion-text-center">
+                        <ion-label [color]="track == activetrack ? 'success':'light' ">
+                            {{track.name}}
+                        </ion-label>
+                    </ion-card-title>
+                    <ion-card-content>
+                        <ion-img botton [src]="track.Caratula"> </ion-img>
+                    </ion-card-content>
+                </ion-card>
+
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <!-- <ion-list>
+          <ion-item button *ngFor="let track of playlist" (click)="start(track)" color="dark">
+             
+
+          </ion-item>
+
+      </ion-list> -->
+
+
+
+</ion-content>
+
+<ion-footer *ngIf="activetrack">
+    <ion-toolbar color="danger">
+        <ion-row>
+            <ion-col size="12" class="ion-text-center">
+                {{activetrack.name}}
+
+            </ion-col>
+            <!-- <ion-col size="12" class="ion-text-center">
+                <ion-img [src]="activetrack.Caratula"> </ion-img>
+            </ion-col> -->
+            <ion-col size="12">
+                <ion-range #range [(ngModel)]="progres" max="100" color="success" (touchend)="seek()" (mouseup)="seek()"></ion-range>
+            </ion-col>
+            <ion-col size="12" class="ion-text-center">
+                <ion-button fill="clear" (click)="prev()" color="success">
+                    <ion-icon slot="icon-only" name="caret-back-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button fill="clear" (click)="toggleplayer(false) " *ngIf="!isPlaying" color="success">
+                    <ion-icon slot="icon-only" name="play"></ion-icon>
+                </ion-button>
+
+                <ion-button fill="clear" (click)="toggleplayer(true) " *ngIf="isPlaying" color="success">
+                    <ion-icon slot="icon-only" name="pause"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear" color="success" (click)="stop()">
+                    <ion-icon slot="icon-only" name="stop"></ion-icon>
+                </ion-button>
+
+                <ion-button fill="clear" (click)="next()" color="success">
+                    <ion-icon slot="icon-only" name="caret-forward-outline"></ion-icon>
+                </ion-button>
+
+
+
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>
